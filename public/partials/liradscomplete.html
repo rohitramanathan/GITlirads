@@ -3,15 +3,16 @@
 <meta charset="UTF-8">
 <title>LIRADS Categories</title>
 <link href="liradstyle.css" rel="stylesheet" type="text/css">
-<style type="text/css">
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
 	<script type='text/javascript' src='js/jquery.scrollTo-min.js'></script>
 	<script type='text/javascript' src='js/init.js'></script>
+<style type="text/css">
+
 body {
 	background-color: #CCC;
 }
 </style>
-<link href="../css/foundation.css" rel="stylesheet" type="text/css">
+<!-- <link href="../css/foundation.css" rel="stylesheet" type="text/css"> -->
 </head>
 
 <body>
@@ -51,7 +52,34 @@ body {
           <li>            Definite disappearance at follow up in the absence of treatment.            </li>
         </ul>
         <p><strong>Examples</strong>: </p>
-        <p>Observations that may be categorized as LR1: definite benign entities.</p>
+        <p>Observations that may be categorized as LR1: 
+ <!-- Modal -->       
+        <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">definite benign entities</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Benign Categories</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      <h4> Definitely Benign </h4>
+                      
+                      <li ng-repeat = "def in defbenignitems">{{def}} </li>
+                      <h4> Probably Benign </h4>
+                      <li ng-repeat = "prob in probbenignitems">{{prob}}</li>
+                      <h4> Comments </h4>
+                      <li ng-repeat = "com in commentbenignitems">{{com}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+ <!-- Modal -->       
+        
+        
+        </p>
         <p><strong>Reporting</strong>:</p>
         <ul>
           <li>LR1 observations may be reported at radiologist&rsquo;s discretion. If they are reported, they may be reported in aggregate. </li>
@@ -78,7 +106,36 @@ body {
                 <p><strong>Definition</strong>: </p>
                 <p>Observation with imaging features suggestive but not diagnostic of a benign entity. </p>
                 <p><strong>Examples</strong>: </p>
-                <p>Observations that may be categorized as LR2: probable benign entities. </p>
+                <p>Observations that may be categorized as LR2: 
+ <!-- Modal -->       
+        <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">probably benign entities</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Benign Categories</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      <h4> Definitely Benign </h4>
+                      
+                      <li ng-repeat = "def in defbenignitems">{{def}} </li>
+                      <h4> Probably Benign </h4>
+                      <li ng-repeat = "prob in probbenignitems">{{prob}}</li>
+                      <h4> Comments </h4>
+                      <li ng-repeat = "com in commentbenignitems">{{com}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+ <!-- Modal -->                 
+                
+                
+                
+                
+                 </p>
                 <p><strong>Reporting</strong>: </p>
                 <ul>
                   <li>LR2 observations may be reported at radiologist&rsquo;s discretion. If they are reported, they may be reported in aggregate.</li>
@@ -276,7 +333,7 @@ body {
     <li> This also maintains congruency with OPTN classification, which does not allow &lt;10mm masses to be classified OPTN 5.</li></ul>
 </div>
 <div class="panel" id="lirad5t">
-  <h3>LR5 Treated: Treated HCC</h3>
+  <h3 style="color: #F00">LR5 Treated: Treated HCC</h3>
   <p><br>
     <strong>Concept:</strong><br>
     A loco-regionally treated HCC.</p>
@@ -315,7 +372,7 @@ body {
   </ul>
 </div>
 <div class="panel" id="lirad5v">
-  <h3>LR5V: Definitely HCC with Tumor in vein</h3>
+  <h3 style="color: #F00">LR5V: Definitely HCC with Tumor in vein</h3>
   <p><br>
   <strong>Concept</strong>:<br>
   100% certainty observation is HCC invading vein.</p>
@@ -361,7 +418,7 @@ body {
   </ul>
 </div>
 <div class="panel" id="liradom">
-  <h3>OM: Other Malignancy</h3>
+  <h3 style="color: #F00">OM: Other Malignancy</h3>
   <p><br>
   <strong>Concept</strong>:<br>
   High probability that observation is a malignancy other than HCC.</p>

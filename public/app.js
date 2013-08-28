@@ -90,7 +90,7 @@ function ctrl ($scope) {
     $scope.liradsActive = '';
     $scope.aboutActive = '';
     $scope.contactActive = '';
-    $scope[type + 'Active'] = 'active';
+    $scope[type + 'Active'] = "active";
     }
     
  $scope.study = null;

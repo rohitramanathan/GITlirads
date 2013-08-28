@@ -13,11 +13,11 @@
             <pre ng-show="study"> Selected: {{study}}</pre><br/>
 		</div>	<br/>		
 
-<div ng-controller="ModalDemoCtrl">
+    <div ng-controller="ModalDemoCtrl">
             <a ng-click="open()">Diameter</a>
             <div modal="shouldBeOpen" close="close()" options="opts">
                 <div class="modal-header">
-                <h3>Diameter</h3>
+                 <h3>Diameter</h3>
                 </div>
                 <div class="modal-body">
                     <ul>
@@ -25,19 +25,42 @@
                     <h4> The largest dimension (outer edge to outer edge) of an observation. <br/> Comments: </h4>
                     <li ng-repeat = "diam in diameteritems">{{diam}} </li>
                     </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
-                        </div>
-                    </div>
-					    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
 			   
 			   
 			<input type="radio" ng-model="filter.diameter"  value="lessthan10">  <10 mm                      <br/> 
 			<input type="radio" ng-model="filter.diameter"  value="tentonineteen">  10-19 mm <br/> 
 			<input type="radio" ng-model="filter.diameter"  value="greaterthantwenty">  >20 mm <br/> <br/> 			
 			
-			Benign? <br/>
+			 <br/>
+    <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">Benign</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Benign Categories</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      <h4> Definitely Benign </h4>
+                      
+                      <li ng-repeat = "def in defbenignitems">{{def}} </li>
+                      <h4> Probably Benign </h4>
+                      <li ng-repeat = "prob in probbenignitems">{{prob}}</li>
+                      <h4> Comments </h4>
+                      <li ng-repeat = "com in commentbenignitems">{{com}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+			  			
 		    <input type="radio" ng-model="filter.benign.id"  value="Definitely">  Definitely <br/> 
 			<input type="radio" ng-model="filter.benign.id"  value="Probably">  Probably <br/> 
 			<input type="radio" ng-model="filter.benign.id"  value="Neither"> Neither <br/> <br/> 

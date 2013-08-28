@@ -26,10 +26,38 @@ $scope.diameteritems = ['Diameter should be measured in the sequence, phase, and
 'Rationale: compared to ≥ 20mm observations, < 20mm observations are less likely to be HCC and more difficult to characterize at CT and MRI, and hence they must satisfy stricter criteria to be assigned an equivalent LR category.',
 ];
 
-$scope.defbenignitems = [];
-$scope.probbenignitems = [];
-$scope.defbenignitems = [];
+$scope.defbenignitems = ['Cyst','Hemangioma','Vascular anomaly', 'Perfusion alteration',
+'Hepatic fat deposition or sparing',
+'Hypertrophic pseudomass',
+'Confluent fibrosis',
+'Focal scar',
+'Observation that spontaneously disappears at follow-up',
 
+];
+
+$scope.probbenignitems = [
+'Cyst',
+'Hemangioma',
+'Vascular anomaly',
+'Perfusion alteration',
+'Hepatic fat deposition or sparing',
+'Hypertrophic pseudomass',
+'Confluent fibrosis',
+'Focal scar',
+'LR2 cirrhosis associated nodule',
+
+
+];
+
+$scope.commentbenignitems = [
+'With few exceptions, the list of definite benign entities and probable benign entities is the same. The categorization as LR1 or LR2 depends on the level of certainty.',
+'Observations with features diagnostic of a benign entity are categorized LR1.',
+'Observations with features suggestive of but not diagnostic of a benign entity are categorized LR2. For example, an observation thought to be a benign entity but with atypical imaging features is appropriately categorized LR2.',
+'Observations with features equivocal for benign entities, that do not meet LR4 or LR5 criteria, and that do not have features suggestive of non-HCC malignancy should be categorized LR3.',
+'LI-RADS v2013.1 does not list focal nodular hyperplasia (FNH) or hepatocellular adenoma (HCA) as examples of benign entities.',
+'Rationale: Although FNH-like lesions may occur in cirrhosis, they are rare and difficult to diagnose reliably by non-invasive imaging. HCAs are rare in cirrhosis.',
+
+];
 
   $scope.opts = {
     backdropFade: true,
