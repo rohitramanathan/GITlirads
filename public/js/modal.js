@@ -65,3 +65,16 @@ $scope.commentbenignitems = [
   };
 
 };
+
+
+function AlertDemoCtrl($scope) {
+  $scope.alerts = [
+        { type: 'success', msg: 'Consider - ' }
+  ];
+
+
+  $scope.closeAlert = function(index) {
+    $scope.alerts.splice(index, 1);
+  };
+
+}

@@ -49,8 +49,15 @@ app.filter('filterall', function(){
         console.log(majorcat);
         //alert(major);
    
+        if((query.nonhcc.id)=="true"){
+                returnarray = [{code:"LIRADS OTHER MALIGNANCY"}];
+        }
+        else if (((query.benign.id)=="Neither") && ((query.tumorinvein.id)=="true"))
+        {       returnarray = [{code:"LIRADS 5V"}];
+        }
         
-        if((query.benign.id) == "Definitely")
+        
+        else if((query.benign.id) == "Definitely")
                     { returnarray = [{code:"LIRADS 1"}];
                     }
         else if((query.benign.id)== "Probably")

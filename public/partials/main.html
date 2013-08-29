@@ -74,8 +74,29 @@
             <input type="radio" ng-model="filter.nonhcc.id"  value="false">  No <br/> <br/>
 			<a Popover-animation="true" popover="vein thrombus info"> Tumor in Vein?  </a><br/>
 			<input type="radio" ng-model="filter.tumorinvein.id" value = "true">Yes <br/>
-			<input type="radio" ng-model="filter.tumorinvein.id" value = "false">No <br/>
+			<input type="radio" ng-model="filter.tumorinvein.id" value = "false">No <br/> <br>
 				      
+            <!-- Modal for ancillary features -->     
+                    <div ng-controller="ModalDemoCtrl">
+                    <a ng-click="open()">Ancillary Features</a>
+                    <div modal="shouldBeOpen" close="close()" options="opts">
+                        <div class="modal-header">
+                            <h3>Ancillary Features</h3>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <h4> Features that favor HCC </h4>
+                                <li ng-repeat="item in hccitems">{{item}} <br/> </li>
+                                 <h4> Features that favor benignity </h4>
+                                <li  ng-repeat="items in benignitems">{{items}} <br/> </li> 
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                        </div>
+                    </div>
+					    </div>
+            
             <br/><pre> Major Features </pre>
             <p> Arterial Enhancement </p>
             <input type="radio" ng-model="filter.arterial" value = "hypo">Hypo <br/>
@@ -86,7 +107,29 @@
 			<input type="radio" ng-model="filter.washout.id"  value="true">  Yes <br/> 
             <input type="radio" ng-model="filter.washout.id"  value="false">  No <br/> 
             
-             <a Popover-animation="true" popover="Capsule info"> Capsule </a><br/>
+<br>             
+    <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">Capsule</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Capsule</h3>
+                </div>
+                <div class="modal-body">
+                    <img border="2" src = "/img/capsule.png" height ="600" width="600"> 
+                    <h4>  </h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+			
+             
+             
+             
+             
+             
+             
             <input type="radio" ng-model="filter.capsule.id"  value="true">  Yes <br/> 
             <input type="radio" ng-model="filter.capsule.id"  value="false">  No <br/> 
                 
@@ -95,7 +138,8 @@
             <input type="radio" ng-model="filter.growth.id"  value="false">  No <br/> 
             
             </div>
-               <div class= "well span4">
+<!--            Debug code   
+        <div class= "well span4">
 	          
 	            <ol> 
 	             <li> Values </li>
@@ -113,10 +157,11 @@
 
 	        </ol>
 	            </div>
-	            <div id = "lirads layout" class="well span4" style="margin-top: 30px; width: 200px; overflow: hidden;" ng-controller = "liradscontrol">
-                <ul class="nav nav-pills nav-stacked">
-                <li ng-animate="'animate'" ng-repeat = "lirad in liradsdefs |filter: filter.diameter|filter:filter.arterial |filterall:filter"> {{lirad.code}} 
-                </li>
+-->
+	            <div id = "lirads layout" class="alert alert-info span4"  ng-controller = "liradscontrol">
+                <ul>
+                <p ng-repeat = "lirad in liradsdefs |filter: filter.diameter|filter:filter.arterial |filterall:filter"> {{lirad.code | uppercase}} 
+                </p>
                  </ul>
 	            </div>        
 <!--
@@ -137,80 +182,66 @@
 
 		<br/>
 					<div ng-switch on = "filter.benign.id" >		   
-					       <div ng-switch-when="Definitely" > 
-					            <p> Consider LIRADS 1  </p>
+<!--					       <div ng-switch-when="Definitely" > 
+					        <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert alert-success">
+                       Consider LIRADS 1
+                        </div>
 					        </div>
 					        <div ng-switch-when="Probably" > 
-					            <p>   </p>
-					           
-				<div id="openModal" class="modalDialog">
-	            <div>
-		    <a href="#close" title="Close" class="close">X</a>
-		    <h2>Consider LIRADS 2</h2>
-		    <p>Lirads 2 info here.</p>
-	            </div>
-             </div>
-
-
+					            <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert alert-success">
+                       Consider LIRADS 2
+                        </div>
 					        </div>
-			   
+-->			   
              <div ng-switch-when="Neither">    
                 <div ng-switch on = "filter.mass.id" >
 					    <div ng-switch-when="false" > 
-					            Consider LIRADS 3 if this is not a mass lesion
+					            <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert">
+                       Consider LIRADS 3 if this is not a mass lesion
+                        </div>
 					    </div>
 					    <div ng-switch-when="true"> 
 					    <br/> 
 					    <div ng-switch on = "filter.nonhcc.id" >
 					    <div ng-switch-when="true"> 
-					            <p> Consider Other Malignancy </p>
+					       <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert alert-error">
+                       Consider Other Malignancy
+                        </div>
 					    </div>
 					    <div ng-switch-when="false"> 
 					        <div ng-switch on = "filter.tumorinvein.id"> 
                             <div ng-switch-when="true" > 
-                                <p> LIRADS 5 V </p>
+                              <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert alert-error">
+                       Consider LIRADS 5V
+                        </div>
 					        </div>
                             <div ng-switch-when="false"> 
 				            <div ng-switch on = "filter.washout.id">
-				             <div ng-switch-when = "true">
+				         <!--    <div ng-switch-when = "true">
 				                <p>  WASHOUT CHECKED</p> 			                
-				             </div>
+				             </div> -->
 				             <div ng-switch-when = "false">
-				                <p>  WASHOUT unCHECKED</p> 		                
+				               <!-- <p>  WASHOUT unCHECKED</p> 	-->	                
 				             </div>
 				            </div>
 				               <div ng-switch on = "filter.capsule.id">
 				             <div ng-switch-when = "true">
-				                <p> CAPSULE CHECKED</p> 		                
+				                <!-- <p> CAPSULE CHECKED</p> 	-->	                
 				             </div>
 				            </div>
 				               <div ng-switch on = "filter.growth.id">
 				                <div ng-switch-when = "true">
-				                <p> GROWTH CHECKED</p> 		                
+				                <!-- <p> GROWTH CHECKED</p> -->		                
 				                </div>
 				                </div>
 				            </div>
            
-               <!-- Modal for ancillary features -->     
-                    <div ng-controller="ModalDemoCtrl">
-                    <button class="btn" ng-click="open()">Ancillary Features!</button>
-                    <div modal="shouldBeOpen" close="close()" options="opts">
-                        <div class="modal-header">
-                            <h3>Ancillary Features</h3>
-                        </div>
-                        <div class="modal-body">
-                            <ul>
-                                <h4> Features that favor HCC </h4>
-                                <li ng-repeat="item in hccitems">{{item}} <br/> </li>
-                                 <h4> Features that favor benignity </h4>
-                                <li  ng-repeat="items in benignitems">{{items}} <br/> </li> 
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
-                        </div>
-                    </div>
-					    </div>
+               
 				    </div> 
 					
                 </div>

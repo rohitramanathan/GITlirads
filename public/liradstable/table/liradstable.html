@@ -532,11 +532,11 @@
                 arr = [],
                 majors = [];
             angular.forEach(data, function(item){
-                if ($.inArray(item.hyper, arr) === -1) {
-                    arr.push(item.hyper);
+                if ($.inArray(item.majorcat, arr) === -1) {
+                    arr.push(item.majorcat);
                     majors.push({
-                        'id': item.hyper,
-                        'title': item.hyper
+                        'id': item.majorcat,
+                        'title': item.majorcat
                     });
                 }
             });
