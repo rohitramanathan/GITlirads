@@ -1,0 +1,258 @@
+<!doctype html>
+<html ng-app = "lirad">
+<head>
+	<title> LIRADS</title>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+ 	<script src="js/bootstrap.min.js"></script>
+    <script src = "js/script.js"> </script>
+    <script src= "app.js"></script>
+    <script src = "js/liradsdefs.js"></script>
+ 	<script src="js/ui-bootstrap-tpls-0.5.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.5.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  
+</head>
+
+<body>
+	<h1 class = "well"> LIRADS </h1>
+	
+	<div class = "container" ng-controller = "ctrl">
+
+	    <br/> <br/>
+	    <div style="float:right">
+	         <ol> 
+	             <li> Values </li>
+	             <li> Diameter: {{diameter.id}}</li>
+	             <li> Benign: {{benign.id}} </li>
+	             <li> Study:{{study}} </li>
+	             <li> Mass: {{mass.id}} </li>	 
+	             <li> NonHCC:{{nonhcc.id}} </li> 
+	             <li> Vein Thrombus: {{tumorinvein.id}} </li>  
+	             <li> Arterial Enhancement: {{arterial.id}} </li> 
+	             <li> Washout: {{washout.id}} </li> 
+	             <li> Capsule: {{capsule.id}} </li> 
+	             <li> Growth: {{growth.id}} </li> 
+
+	        </ol>
+	    </div>
+	    
+	    <div style="float:right" ng-controller = "liradscontrol">
+            <li ng-repeat = "lirad in liradsdefs | filter: mass.id | filter:benign.id | filter:nonhcc.id"> {{lirad.code}} </li>
+	    </div>
+        
+			
+		<div class = "btn-group"> 
+                 <pre> Please select type of exam </pre> 
+                 <button type="button" class="btn btn-primary" ng-model="study" btn-radio="'CT'">  CT </button> 
+                    <button type="button" class="btn btn-primary" ng-model="study" btn-radio="'MRI'">  MRI </button> <br/> <br/>
+                     <pre ng-show="study"> Selected: {{study}}</pre><br/>
+
+			</div>
+		<div ng-show = "study">
+			<div id = diameter>
+			Diameter? <br/>
+				<button type="button" class="btn btn-primary"  ng-model="diameter.id"  btn-radio="'lessthan10'">  <10 mm </button> 
+				<button type="button" class="btn btn-primary"  ng-model="diameter.id"  btn-radio="'tentonineteen'">  10-19 mm </button> 
+				<button type="button" class="btn btn-primary"  ng-model="diameter.id"  btn-radio="'greaterthantwenty'">  >= 20mm </button> 
+		
+				
+			</div>	
+			
+			<div id = benign>
+			Benign? <br/>
+				<button type="button" class="btn btn-primary"  ng-model="benign.id"  btn-radio="'Definitely'">  Definitely </button> 
+				<button type="button" class="btn btn-primary"  ng-model="benign.id"  btn-radio="'Probably'">  Probably </button> 
+				<button type="button" class="btn btn-primary" ng-model="benign.id"  btn-radio="'Neither'">  Neither </button> 
+			</div>	
+		</div>
+		<br/>
+			<div ng-switch on = "benign.id" class="container">
+					   
+					       <div ng-switch-when="Definitely" > 
+					            <p> Consider LIRADS 1  </p>
+					        </div>
+					        <div ng-switch-when="Probably" > 
+					            <p> Consider LIRADS 2  </p>
+					        </div>
+			
+			<div ng-switch-when="Neither" ng-show = "benign.id"> 
+                	
+                        Mass Lesion? <br/>
+                       <button type="button" class="btn btn-primary" ng-model="mass.id" btn-checkbox>Mass - Yes</button> 
+                  <button type="button" class="btn btn-primary" ng-model="mass.no"  btn-checkbox>Mass - No</button> 
+                  <div ng-show = "mass.no">
+                        <p> Consider LIRADS 3 if this is not a mass lesion </p>
+                  </div>
+                 <!--   <button type="button" class="btn btn-primary"  ng-model="mass.id"  btn-radio="'Yes'">  Yes </button> 
+                        <button type="button" class="btn btn-primary"  ng-model="mass.id"  btn-radio="'No'">  No </button>
+                    -->
+		   	
+		
+					<div ng-switch on = "mass.id" class="container">
+					    <div ng-switch-when="false" > 
+					            <p> None </p>
+					    </div>
+					    <div ng-switch-when="true"> 
+					       <p>  Non-HCC Malignancy ? (Toggle select) </p>
+					       <button type="button" class="btn btn-primary" ng-model="nonhcc.id" btn-checkbox>Non-HCC Malignancy - Yes</button> 
+					<div ng-switch on = "nonhcc.id" class="container">
+					    <div ng-switch-when="false"> 
+					        <a Popover-animation="true" popover="vein thrombus info"> Tumor in Vein? (Toggle select) </a><br/>
+					           <button type="button" class="btn btn-primary" ng-model="tumorinvein.id" btn-checkbox>Tumor in Vein</button> 
+					        
+					         <!--
+					        <button type="button" class="btn btn-primary"  ng-model="tumorinvein.id" btn-radio="'Yes'">  Yes </button> 
+				            <button type="button" class="btn btn-primary"  ng-model="tumorinvein.id" btn-radio="'No'">  No </button> <br/> <br/>
+				               -->
+					    </div>
+					    <div ng-switch-when="true"> 
+					            <p> Consider Other Malignancy </p>
+					        </div>
+				    </div> 
+					 <br/> 
+        <div ng-switch on = "tumorinvein.id" class="container"> 
+                    <div ng-switch-when="true" > 
+                        <p> LIRADS 5 V </p>
+					</div>
+                    <div class = "span6 well" ng-switch-when="false"> 
+                   <pre> Major Features </pre>
+                   <p> Arterial Enhancement </p>
+                    <button type="button" class="btn btn-primary"  ng-model="arterial.id" btn-radio="'Hyper'">  Hyper </button> 
+                    <button type="button" class="btn btn-primary"  ng-model="arterial.id" btn-radio="'Hypo'">  Hypo </button>  
+                    <button type="button" class="btn btn-primary"  ng-model="arterial.id" btn-radio ="'Iso'">  Iso </button> <br/>  <br/>
+                   
+                    <a Popover-animation="true" popover="Washout info"> Washout </a><br/>
+
+                        <button type="button" class="btn btn-primary"  ng-model="washout.id" btn-radio="'Yes'">  Yes </button> 
+				        <button type="button" class="btn btn-primary"  ng-model="washout.id" btn-radio="'No'">  No </button> <br/>
+                    
+                    <a Popover-animation="true" popover="Capsule info"> Capsule </a><br/>
+                    <button type="button" class="btn btn-primary"  ng-model="capsule.id" btn-radio="'Yes'">  Yes </button> 
+                    <button type="button" class="btn btn-primary"  ng-model="capsule.id" btn-radio="'No'">  No </button> <br/>
+                
+                    <a Popover-animation="true" popover="Diameter increase of a mass by a minimum of 5mm AND, depending on the time interval between examinations, by the following amounts - >50% diameter increase in  ≤ 6 months or >100% in > 6 months. A new ≥10mm mass, regardless of the time interval."> Growth </a> <br/>
+                    <button type="button" class="btn btn-primary"  ng-model="growth.id" btn-radio="'Yes'">  Yes </button> 
+                    <button type="button" class="btn btn-primary"  ng-model="growth.id" btn-radio="'No'">  No </button> <br/>
+                    
+        <div ng-switch on = "arterial.id" class = "container">
+            
+        </div>
+                    
+                        
+              
+               <!-- Modal for ancillary features -->     
+                    <div ng-controller="ModalDemoCtrl">
+                    <button class="btn" ng-click="open()">Add Ancillary Features!</button>
+                    <div modal="shouldBeOpen" close="close()" options="opts">
+                        <div class="modal-header">
+                            <h3>Ancillary Features</h3>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <button class="btn" ng-repeat="item in items">{{item}} <br/> </button>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                        </div>
+                    </div>
+                    
+</div>
+                <!--Modal for ancillary features -->
+                    
+                    
+                </div>
+                    
+		</div>
+					       <!--
+					        <button type="button" class="btn btn-primary"  ng-change = "filter()"  ng-model="nonhcc.id" btn-radio="'Yes'">  Yes </button> 
+				            <button type="button" class="btn btn-primary"  ng-change = "filter()" ng-model="nonhcc.id" btn-radio="'No'">  No </button> <br/> <br/>
+				            -->
+					    </div>
+					    
+					    <br/>
+				    </div>	    
+
+    </div>			
+		</div>
+		
+	
+</body>
+</html>	
+			
+     
+<!--    
+    	<a  ng-click="myFilter = {mass:'Yes'}"> Mass <a> <br/>
+		<a  ng-click="myFilter = {mass: 'No'}"> No mass <a> <br/>		
+    
+    <div class="well" style="margin-top: 30px; width: 200px; overflow: hidden;">
+    <form class="form-search"> 
+        <div class="input-append">
+          <input type="text" ng-model="search" class="search-query" style="width: 80px">
+          <button type="submit" class="btn">Search</button>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-animate="'animate'" ng-repeat="name in names | filter:search">
+            <a href="#"> {{name}} </a>
+          </li> 
+      </ul>
+    </form>
+  </div>
+</p>
+				
+			<div ng-show = "mass">
+				 Non HCC malignancy
+				<button type="button" class="btn btn-primary"  ng-model="nonhcc" btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-click="isCollapsed2 = !isCollapsed2" ng-model="nonhcc" btn-radio="'No'">  No </button> <br/> <br/>
+					
+					<div collapse2="isCollapsed2">
+					    <div class="container">
+					        <br/> 
+					    </div>
+					</div>
+			</div>
+					
+			<div ng-show = "nonhcc">
+				 Tumor in Vein?
+				<button type="button" class="btn btn-primary"  ng-model="tumorinvein" btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-click="isCollapsed3 = !isCollapsed3" ng-model="nonhcc" btn-radio="'No'">  No </button> <br/> <br/>
+					
+					<div collapse3="isCollapsed3">
+					    <div class="container">
+					        <br/> Continue
+					    </div>
+					</div>
+			</div>	  
+				         <button type="button" class="btn btn-primary"  ng-model="tumorinvein" btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-click="isCollapsed3 = !isCollapsed3" ng-model="tumorinvein" btn-radio="'No'">  No </button> <br/> <br/>
+				                <div ng-show = "tumorinvein"> </div>
+				                    
+					    
+	-->			
+<!--		 
+			<div ng-show = "study">
+				<p> Mass lesion </p>
+				<input type = "radio" ng-model = "mass" value = "Yes"> Yes <br/>
+				<input type = "radio" ng-model = "mass" value = "No"> No <br/>
+				<p ng-show="mass"> Selected: {{mass}}</p><br/>
+			</div>
+			
+			<div> 
+				<input type = "text" class = "input-small" ng-model = "observation" placeholder = "#"> Observation Number <br/>
+				<input type = "text" class = "input-small" ng-model = "segment" placeholder = "#"> Segment Number <br/>
+			</div>
+
+			<div ng-show = "mass" >
+					<p> Non HCC malignancy </p>
+					<input type = "radio" ng-model = "nonhcc" value = "Yes"> Yes <br/>
+					<input type = "radio" ng-model = "nonhcc" value = "No"> No <br/>
+			 </div> <br/>
+			 <div ng-show = "nonhcc" >
+					<p> Tumor in Vein </p> <br/>
+					<input type = "radio" ng-model = "tumorinvein" value = "Yes"> Yes <br/>
+					<input type = "radio" ng-model = "tumorinvein" value = "No"> No <br/>
+			 </div>
+-->	

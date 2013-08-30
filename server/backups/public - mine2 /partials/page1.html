@@ -1,0 +1,55 @@
+<div class = "container" ng-controller = "ctrl">
+	    <br/> <br/>
+	    <div style="float:right">
+	         <ol> 
+	             <li> Values </li>
+	             <li> Study:{{study}} </li>
+	             <li>  Mass: {{mass}} </li>	 
+	             <li> NonHCC:{{nonhcc.id}} </li> 
+	             <li> Vein Thrombus: {{tumorinvein.id}} </li>  
+	        </ol>
+	    </div>
+		<div style="float:right" ng-controller = "liradscontrol">
+	        <li ng-repeat = "lirad in liradsdefs"> {{lirad.code }} </li>
+	    </div>	
+		<div class = "btn-group"> 
+                 <pre> Please select type of exam </pre> 
+                 <button type="button" class="btn btn-primary" ng-model="study" btn-radio="'CT'">  CT </button> 
+                    <button type="button" class="btn btn-primary" ng-model="study" btn-radio="'MRI'">  MRI </button> <br/> <br/>
+                     <pre ng-show="study"> Selected: {{study}}</pre><br/>
+
+			</div>
+		<div ng-show = "study">
+				Mass Lesion? <br/>
+				<button type="button" class="btn btn-primary" ng-model="mass"  btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-model="mass"  btn-radio="'No'">  No </button>
+				
+				
+					<div ng-switch on = "mass" class="container">
+					    <div ng-switch-when="Yes"> 
+					       <p> Non-HCC Malignancy </p>
+					        <button type="button" class="btn btn-primary"   ng-model="nonhcc.id" btn-radio="'Yes'">  Yes </button> 
+				            <button type="button" class="btn btn-primary"  ng-model="nonhcc.id" btn-radio="'No'">  No </button> <br/> <br/>
+					    </div>
+					       <div ng-switch-when="No" > 
+					            <p> Consider LIRADS 1 / 2 </p>
+					        </div>
+					    
+					    <br/>
+					</div>
+					
+				   <div ng-switch on = "nonhcc.id" class="container">
+					    <div ng-switch-when="No"> 
+					       <p> Tumor in Vein </p>
+					        <button type="button" class="btn btn-primary"  ng-model="tumorinvein.id" btn-radio="'Yes'">  Yes </button> 
+				            <button type="button" class="btn btn-primary"  ng-model="tumorinvein.id" btn-radio="'No'">  No </button> <br/> <br/>
+					    </div>
+					       <div ng-switch-when="Yes"> 
+					            <p> Consider Other Malignancy </p>
+					        </div>
+					    
+					    <br/>
+					</div>
+				</div>
+</div>			
+					

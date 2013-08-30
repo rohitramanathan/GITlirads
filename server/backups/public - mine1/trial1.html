@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app = "lirad">
+<head>
+	<title>LIRADS</title>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+ 	<script src="js/bootstrap.min.js"></script>
+ 	<script src="js/ui-bootstrap-tpls-0.5.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+	<script src = "js/script.js"> </script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.5.0.js"></script>
+    <script src="app.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  
+</head>
+<body>
+	<h1 class = "well"> LIRADS </h1>
+	<div class = "container" ng-controller = "ctrl">
+	    <div style="text-align:right"> Values <br/> Study:{{study}} <br/> Mass: {{mass}} <br/>	 NonHCC:{{nonhcc}} <br/> Vein Thrombus: {{tumorinvein}} <br/>  </div>
+			 
+			 <div class = "btn-group"> 
+			 <pre> Please select type of exam </pre> 
+			 <button type="button" class="btn btn-primary" ng-model="study" btn-radio="'CT'">  CT </button> 
+				<button type="button" class="btn btn-primary" ng-model="study" btn-radio="'MRI'">  MRI </button> <br/> <br/>
+				 <pre ng-show="study"> Selected: {{study}}</pre><br/>
+
+			</div>
+			
+	
+			<div ng-show = "study">
+				Mass Lesion?
+				<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" ng-model="mass" btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-model="mass" btn-radio="'No'">  No </button>
+				
+				<div collapse="isCollapsed">
+					<div class="container">
+					    <br/>
+					</div>
+				</div>
+			</div>	
+			
+			<div ng-show = "mass">
+				 Non HCC malignancy
+				<button type="button" class="btn btn-primary"  ng-model="nonhcc" btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-click="isCollapsed2 = !isCollapsed2" ng-model="nonhcc" btn-radio="'No'">  No </button> <br/> <br/>
+					
+					<div collapse2="isCollapsed2">
+					    <div class="container">
+					        <br/> 
+					    </div>
+					</div>
+			</div>
+					
+			<div ng-show = "nonhcc">
+				 Tumor in Vein?
+				<button type="button" class="btn btn-primary"  ng-model="tumorinvein" btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-click="isCollapsed3 = !isCollapsed3" ng-model="nonhcc" btn-radio="'No'">  No </button> <br/> <br/>
+					
+					<div collapse3="isCollapsed3">
+					    <div class="container">
+					        <br/> Continue
+					    </div>
+					</div>
+			</div>	  
+<!--					         <button type="button" class="btn btn-primary"  ng-model="tumorinvein" btn-radio="'Yes'">  Yes </button> 
+				<button type="button" class="btn btn-primary" ng-click="isCollapsed3 = !isCollapsed3" ng-model="tumorinvein" btn-radio="'No'">  No </button> <br/> <br/>
+				                <div ng-show = "tumorinvein"> </div>
+				                    
+					    
+	-->			
+					
+					</div> 
+				</div>
+			</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+<!--		 
+			<div ng-show = "study">
+				<p> Mass lesion </p>
+				<input type = "radio" ng-model = "mass" value = "Yes"> Yes <br/>
+				<input type = "radio" ng-model = "mass" value = "No"> No <br/>
+				<p ng-show="mass"> Selected: {{mass}}</p><br/>
+			</div>
+			
+			<div> 
+				<input type = "text" class = "input-small" ng-model = "observation" placeholder = "#"> Observation Number <br/>
+				<input type = "text" class = "input-small" ng-model = "segment" placeholder = "#"> Segment Number <br/>
+			</div>
+
+			<div ng-show = "mass" >
+					<p> Non HCC malignancy </p>
+					<input type = "radio" ng-model = "nonhcc" value = "Yes"> Yes <br/>
+					<input type = "radio" ng-model = "nonhcc" value = "No"> No <br/>
+			 </div> <br/>
+			 <div ng-show = "nonhcc" >
+					<p> Tumor in Vein </p> <br/>
+					<input type = "radio" ng-model = "tumorinvein" value = "Yes"> Yes <br/>
+					<input type = "radio" ng-model = "tumorinvein" value = "No"> No <br/>
+			 </div>
+-->	

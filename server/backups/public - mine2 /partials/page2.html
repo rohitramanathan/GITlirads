@@ -1,0 +1,24 @@
+<div class = "container" ng-controller = "ctrl">
+	
+
+				
+				
+					    
+					    <br/>
+					</div>
+					
+				   <div ng-switch on = "nonhcc.id" class="container">
+					    <div ng-switch-when="No"> 
+					       <p> Tumor in Vein </p>
+					        <button type="button" class="btn btn-primary"  ng-model="tumorinvein.id" btn-radio="'Yes'">  Yes </button> 
+				            <button type="button" class="btn btn-primary"  ng-model="tumorinvein.id" btn-radio="'No'">  No </button> <br/> <br/>
+					    </div>
+					       <div ng-switch-when="Yes"> 
+					            <p> Consider Other Malignancy </p>
+					        </div>
+					    
+					    <br/>
+					</div>
+				</div>
+</div>			
+					

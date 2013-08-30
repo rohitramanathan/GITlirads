@@ -1,0 +1,441 @@
+
+<head>
+<meta charset="UTF-8">
+<title>LIRADS Categories</title>
+<link href="liradstyle.css" rel="stylesheet" type="text/css">
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+	<script type='text/javascript' src='js/jquery.scrollTo-min.js'></script>
+	<script type='text/javascript' src='js/init.js'></script>
+<style type="text/css">
+
+body {
+	background-color: #CCC;
+}
+</style>
+<!-- <link href="../css/foundation.css" rel="stylesheet" type="text/css"> -->
+</head>
+
+<body>
+<h5>
+   
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li><a href="#lirad1">LIRADS - 1</a></li>
+                 <li > <a href="#lirad2">LIRADS - 2</a>                       
+                </li>
+                <li><a href="#lirad3">LIRADS - 3</a></li>
+                <li ><a href="#lirad4">LIRADS - 4</a></li>
+                <li><a href="#lirad5">LIRADS - 5</a></li>
+                <li ><a href="#lirad5v">LIRADS - 5V</a></li>
+                <li><a href="#lirad5t">LIRADS - 5T</a></li>
+                <li ><a title="$.scrollTo( '#liradom', 800, {easing:'elasout'} );" href="#liradom">LIRADS - OM </a></li>
+              </ul>
+            </div>
+          </div>
+        <!-- /.navbar -->
+</h5>
+<div class="panel" id="map_canvas" title="Page 129">
+  <div>
+    <div>
+      <div id = "lirad1">
+        <h3 style="color: #000"><strong style="color: #0F0">LIRADS 1</strong><span style="color: #000">:</span> <span style="color: #3F0">Definitely Benign</span></h3>
+        <p><strong>Concept</strong>: </p>
+        <p>100% certainty observation is benign. </p>
+        <p><strong>Definition</strong>: </p>
+        <p>Observation with: </p>
+        <ul>
+          <li>
+            <p>Imaging features diagnostic of a benign entity OR </p>
+          </li>
+          <li>            Definite disappearance at follow up in the absence of treatment.            </li>
+        </ul>
+        <p><strong>Examples</strong>: </p>
+        <p>Observations that may be categorized as LR1: 
+ <!-- Modal -->       
+        <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">definite benign entities</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Benign Categories</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      <h4> Definitely Benign </h4>
+                      
+                      <li ng-repeat = "def in defbenignitems">{{def}} </li>
+                      <h4> Probably Benign </h4>
+                      <li ng-repeat = "prob in probbenignitems">{{prob}}</li>
+                      <h4> Comments </h4>
+                      <li ng-repeat = "com in commentbenignitems">{{com}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+ <!-- Modal -->       
+        
+        
+        </p>
+        <p><strong>Reporting</strong>:</p>
+        <ul>
+          <li>LR1 observations may be reported at radiologist&rsquo;s discretion. If they are reported, they may be reported in aggregate. </li>
+          <li>Exception: LR1 observations that on the previous examination were reported as LR3, LR4, or LR5 usually should be reported. If they are reported, it may be more appropriate to report them individually rather than in aggregate.</li>
+          <li> Rationale: The interval downgrade in category may alter management or prognosis. </li>
+        </ul>
+        <p><strong>Management</strong>: </p>
+        <p>Continued routine surveillance usually is appropriate. </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel" id="lirad2" title="Page 130">
+  <div>
+    <div>
+      <div>
+        <h3><strong style="color: #090">LIRADS 2</strong><span style="color: #000">:</span> <span style="color: #090">Probably Benign</span></h3>
+        <div id="lirad2" title="Page 131">
+          <div>
+            <div>
+              <div>
+                <p><strong>Concept</strong>: </p>
+                <p>High probability observation is benign. </p>
+                <p><strong>Definition</strong>: </p>
+                <p>Observation with imaging features suggestive but not diagnostic of a benign entity. </p>
+                <p><strong>Examples</strong>: </p>
+                <p>Observations that may be categorized as LR2: 
+ <!-- Modal -->       
+        <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">probably benign entities</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Benign Categories</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      <h4> Definitely Benign </h4>
+                      
+                      <li ng-repeat = "def in defbenignitems">{{def}} </li>
+                      <h4> Probably Benign </h4>
+                      <li ng-repeat = "prob in probbenignitems">{{prob}}</li>
+                      <h4> Comments </h4>
+                      <li ng-repeat = "com in commentbenignitems">{{com}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+ <!-- Modal -->                 
+                
+                
+                
+                
+                 </p>
+                <p><strong>Reporting</strong>: </p>
+                <ul>
+                  <li>LR2 observations may be reported at radiologist&rsquo;s discretion. If they are reported, they may be reported in aggregate.</li>
+                  <li>Exception: LR2 observations that on the previous examination were reported as LR3, LR4, or LR5 usually should be reported. If they are reported, it may be more appropriate to report them individually rather than in aggregate.</li>
+                  <li>Rationale: The interval downgrade in category may alter management or prognosis. </li>
+                </ul>
+                <p><strong>Management</strong>: </p>
+                <p>Continued routine surveillance usually is appropriate. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+<p>&nbsp;</p>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+</div>
+<h3>&nbsp;</h3>
+<div class="panel" id="lirad3" title="Page 132">
+  <div>
+    <div>
+      <div>
+        <h3><strong style="color: #FF0">LIRADS 3</strong><span style="color: #000">:</span> <span style="color: #FF0">Intermediate Probability for HCC</span></h3>
+        <p><strong>Concept</strong>: </p>
+        <p>Both HCC and benign entity have moderate probability. </p>
+        <p><strong>Definition</strong>: </p>
+        <p>Observation that does not meet criteria for other LI- RADS categories. </p>
+        <p><strong>Criteria</strong> (any of the following): </p>
+        <p>Not definite benign entity, not probable benign entity, not non-HCC malignancy, and one of the following: </p>
+        <ul>
+          <li>Not definite mass
+            <ul>
+              <li>Includes nodule-like hepatic arterial phase hyper-enhancement (NAPH)</li>
+            </ul>
+          </li>
+          <li>Mass with hepatic arterial phase hypo- or iso- enhancement        
+            <ul>
+              <li>&lt; 20mm mass with ≤ 1 of following: &ldquo;washout&rdquo;, &ldquo;capsule&rdquo;, threshold growth        </li>
+              <li>≥ 20mm mass with none of following: &ldquo;washout&rdquo;, &ldquo;capsule&rdquo;, threshold growth        </li>
+            </ul>
+          </li>
+          <li>Mass with hepatic arterial phase hyper- enhancement 
+            <ul>
+              <li>&lt; 20mm mass with none of following: &ldquo;washout&rdquo;, &ldquo;capsule&rdquo;, threshold growth</li>
+            </ul>
+          </li>
+        </ul>
+        <div title="Page 133">
+          <div>
+            <div>
+              <div>
+                <p><strong>Reporting</strong>: </p>
+                <p>The reporting of observations categorized LR3 depends on the presence of LR4, LR5, or OM observations elsewhere in the liver: </p>
+                <ul>
+                  <li>If there are no LR4, LR5, or OM observations: LR3 observations should be reported. </li>
+                  <li>If LR4, LR5, or OM observations are present: LR3 observations may be reported at radiologist&rsquo;s discretion. </li>
+                  <li>If LR3 observations are reported, they may be reported in aggregate. </li>
+                  <li>Exception: LR3 observations that on the previous examination were reported as LR4 or LR5 usually should be reported, regardless of the presence of LR4, LR5, or OM observations elsewhere in the liver. If they are reported, it may be more appropriate to report them individually rather than in aggregate.</li>
+                  <li>Rationale: The interval downgrade in category may alter management or prognosis. </li>
+                  <blockquote>
+                    <p>&nbsp;</p>
+                  </blockquote>
+                </ul>
+                <p><strong>Management: </strong></p>
+                <p>Variable follow-up (depends on observation size, stability, and clinical considerations). </p>
+              </div>
+            </div>
+          </div>
+        </div>
+<p>&nbsp; </p>
+      </div>
+    </div>
+  </div>
+</div>
+<h3>&nbsp;</h3>
+<div class="panel" id="lirad4" title="Page 134">
+  <div>
+    <div>
+      <div>
+        <h3 style="color: #F96"><strong>LIRADS 4</strong>:  Probably  HCC</h3>
+        <p><strong>Concept</strong>: </p>
+        <p>High probability observation is HCC but there is not 100% certainty. </p>
+        <p><strong>Definition</strong>: </p>
+        <p>Observation with imaging features suggestive but not diagnostic of HCC. </p>
+        <p><strong>Criteria</strong>: </p>
+        <p>Not definite benign entity, not probable benign entity, not non-HCC malignancy, and as follows: </p>
+        <p><strong>LR 4A (&lt; 20mm mass) </strong></p>
+        <ul>
+          <li>Mass with arterial phase hypo- or iso- enhancement 
+            <ul>
+              <li>≥ 2 of following: &ldquo;washout&rdquo;, &ldquo;capsule&rdquo;, threshold growth </li>
+            </ul>
+          </li>
+          <li>Mass with arterial phase hyper-enhancement
+            <ul>
+              <li>&lt; 10mm mass with ≥ 1 of following: 
+                <ul>
+                  <li>&ldquo;washout&rdquo;,            &ldquo;capsule&rdquo;, threshold growth OR</li>
+                </ul>
+              </li>
+              <li>10-19mm mass with only 1 of following: 
+                <ul>
+                  <li>&ldquo;washout&rdquo;, &ldquo;capsule&rdquo;, threshold growth</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>&nbsp;</p>
+        <div title="Page 135">
+          <div>
+            <div>
+              <div>
+                <p><strong>LR 4B (≥ 20mm mass) </strong></p>
+                <ul>
+                  <li> Mass with arterial phase hypo- or iso- enhancement 
+                    <ul>
+                      <li> ≥ 1 of following: &ldquo;washout&rdquo;, &ldquo;capsule&rdquo;, threshold growth </li>
+                    </ul>
+                  </li>
+                  <li> Mass with arterial phase hyper-enhancement 
+                    <ul>
+                      <li>None of following: &ldquo;washout&rdquo;, &ldquo;capsule&rdquo;, threshold growth </li>
+                    </ul>
+                  </li>
+                </ul>
+                <p><strong>Reporting</strong>: </p>
+                <p>Must be reported. </p>
+                <p><strong>Management</strong>:</p>
+                <ul>
+                  <li>Close follow up, additional imaging, biopsy, or treatment (loco-regional treatment, sub-total hepatic resection) may be appropriate. </li>
+                  <li>Does not contribute to radiologic T-staging unless multiple LR4 observations are present that individually do not meet LR5 criteria but in aggregate are interpreted as multifocal (T-stage 4a) HCC. </li>
+                  <li>Does not provide HCC exception points for determining priority on liver transplantation list. </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+<p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+</div>
+<h3>&nbsp;</h3>
+<div class="panel" id="lirad5">
+  <h3><strong style="color: #F00">LIRADS 5</strong>:  Definitely  HCC</h3>
+  <p><strong>Concept</strong>:<br>
+  100% certainty observation is HCC. LR5 is essentially equivalent to OPTN 5.</p>
+  <p><br>
+    <strong>Definition</strong>:<br>
+  Observation with imaging features diagnostic of HCC or proven to be HCC at histology.</p>
+  <p><br>
+    <strong>Criteria</strong>:<br>
+  Not definite benign entity, not probable benign entity, not non-HCC malignancy, and as follows:</p>
+  <p><strong>LR 5A (10-19mm mass)</strong></p>
+  <ul>
+    <li>Mass with arterial phase hyper-enhancement 
+        <ul>
+          <li>10-19mm mass with ≥ 2 of following:            
+            <ul>
+              <li>“washout”, “capsule”, threshold growth</li>
+            </ul>
+          </li>
+        </ul>
+    </li>
+  </ul>
+  <p><br>
+  <strong>LR 5B (≥ 20mm mass)</strong></p>
+  <ul>
+    <li>Mass with arterial phase hyper-enhancement
+      <ul>
+        <li>≥ 20mm mass with ≥ 1 of following: 
+          <ul>
+            <li>“washout”,
+              “capsule”, threshold growth</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Reporting</strong>:<br>
+  Must be reported.</p>
+  <p><br>
+  <strong>Management</strong>:</p>
+  <ul>
+    <li>Treatment without biopsy is appropriate.</li>
+    <li>Contributes to radiologic T-staging.</li>
+    <li>May provide HCC exception points for determining priority on liver transplantation list. See OPTN policy 3.6.4.4.</li>
+  </ul>
+  <p><strong>Comments</strong>:</p>
+  <ul>
+    <li>Note that LR5 observations must have diameter ≥ 10mm.</li>
+    <li><strong>Rationale</strong>: &lt; 10mm masses are unlikely to be HCC, difficult to characterize at CT and MRI and, if resection/explantation is performed, difficult to co-localize on imaging and pathology. Hence, &lt; 10mm masses cannot be diagnosed at CT or MRI with 100% certainty as HCC. Close follow-up will allow LR5A categorization once diameter exceeds 10 mm.</li>
+    <li> This also maintains congruency with OPTN classification, which does not allow &lt;10mm masses to be classified OPTN 5.</li></ul>
+</div>
+<div class="panel" id="lirad5t">
+  <h3 style="color: #F00">LR5 Treated: Treated HCC</h3>
+  <p><br>
+    <strong>Concept:</strong><br>
+    A loco-regionally treated HCC.</p>
+  <p> <br>
+    <strong>Definition</strong>:<br>
+    LR5A or 5B observation or biopsy-proven HCC lesion that has undergone loco-regional treatment (i.e., was ablated or embolized).</p>
+  <p><br>
+    <strong>Reporting</strong>:<br>
+    Must be reported.</p>
+  <p><br>
+    <strong>Management</strong>:</p>
+  <ul>
+    <li>LR5 Treated observations require close follow up to assess treatment response.
+      <ul>
+        <li> If close follow up indicates persistent/recurrent tumor, LR5 Treated observations may require re-treatment. </li>
+      </ul>
+    </li>
+    <li>LR5 Treated observations qualify for continued priority points predicated on their pre-treatment categorization. See OPTN policy 3.6.4.4.</li>
+  </ul>
+  <p> <strong>Criteria for assessing treatment response:</strong><br>
+    These criteria are in development. </p>
+  <p><strong>Comments</strong>:</p>
+  <ul>
+    <li>LR 5 Treated applies only to LR5 observations or biopsy-proven HCCs that were ablated or located within a region of the liver that was embolized. </li>
+    <li>To maintain congruency between LI-RADS and OPTN, LR5 Treated does not apply to
+      <ul>
+        <li>LR≤4 observations that have undergone loco- regional treatment. </li>
+        <li>Observations treated only with systemic therapies.</li>
+        <li> Observations that have been resected. </li>
+        <li>Observations located outside the ablation
+          zone or embolization field.</li>
+      </ul>
+    </li>
+    <li> LR5 Treated does not imply that loco-regional treatment was successful or that residual or recurrent HCC is absent. </li>
+    <li>Observations undergoing systemic therapy should be assigned their pre-treatment LI-RADS category regardless of treatment-related changes in imaging features; the pre-treatment LI-RADS category should not be downgraded.</li>
+  </ul>
+</div>
+<div class="panel" id="lirad5v">
+  <h3 style="color: #F00">LR5V: Definitely HCC with Tumor in vein</h3>
+  <p><br>
+  <strong>Concept</strong>:<br>
+  100% certainty observation is HCC invading vein.</p>
+  <p><br>
+    <strong>Definition</strong>:<br>
+  Observation with imaging features diagnostic of HCC invading vein.</p>
+  <p><br>
+    <strong>Criterion</strong>:<br>
+  Definite enhancing soft tissue in vein. </p>
+  <p><br>
+    <strong>Reporting</strong>:<br>
+  Must be reported.</p>
+  <p><br>
+  <strong>Management</strong>:</p>
+  <ul>
+    <li>Treatment without biopsy is appropriate.</li>
+    <li>Denotes radiologic T-stage 4b.</li>
+    <li>Contraindication to liver transplantation.</li>
+  </ul>
+  <p><strong>Comments</strong>:</p>
+  <ul>
+    <li>LR5V applies even if parenchymal component of mass is not identified at imaging.</li>
+    <li>The term tumor in vein is preferred over the term tumor thrombus.
+      <ul>
+        <li>Rationale: the pathological spectrum ranges from thrombus with scant tumor cells to solid tumor with scant thrombus.</li>
+      </ul>
+    </li>
+    <li>While not diagnostic of tumor in vein, features that may alert radiologist to diagnosis include: 
+      <ul>
+        <li>Occluded vein with any of the following: 
+          <ul>
+            <li>Moderately to markedly expanded lumen </li>
+            <li>Ill-defined walls </li>
+            <li>Restricted diffusion</li>
+            <li>Contiguity with LR5 observation</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Obscured, partially visualized vein</li>
+    <li>Heterogeneous enhancement of vein not attributable to mixing artifact</li>
+    <li>By comparison, non-tumoral bland thrombus does not enhance and usually does not expand lumen to same degree as tumor in vein.</li>
+  </ul>
+</div>
+<div class="panel" id="liradom">
+  <h3 style="color: #F00">OM: Other Malignancy</h3>
+  <p><br>
+  <strong>Concept</strong>:<br>
+  High probability that observation is a malignancy other than HCC.</p>
+  <p><br>
+  <strong>Definition</strong>:<br>
+  Observation with features suggestive of non-HCC malignancy.</p>
+  <p><br>
+  <strong>Reporting</strong>:<br>
+  Must be reported.</p>
+  <p><br>
+  <strong>Management</strong>:</p>
+  <ul>
+    <li>Variable, depending on clinical history and type of malignancy suspected.</li>
+    <li>Appropriate management may include close follow up, additional imaging, biopsy, or treatment.</li>
+    <li>Does not contribute to radiologic T-staging and does not provide HCC exception points for determining priority on liver transplantation list, unless tissue sampling with histology analysis establishes a diagnosis of HCC. See OPTN policy 3.6.4.4.</li>
+  </ul>
+  <p>&nbsp;</p>
+</div>
+</body>
+

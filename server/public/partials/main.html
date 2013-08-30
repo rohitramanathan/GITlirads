@@ -1,0 +1,212 @@
+<div class = "container-fluid">
+<div class = "row-fluid">
+	<div ng-controller = "ctrl">
+       	 <div id = "lirads layout" class="alert alert-info"  ng-controller = "liradscontrol">
+         <ul>
+         <p ng-repeat = "lirad in liradsdefs |filter: filter.diameter|filter:filter.arterial |filterall:filter"> {{lirad.code | uppercase}} 
+         </p>
+         </ul>
+	     </div> <br/>
+        <p class = " alert alert-success ">   Please select options from below to narrow LIRADS categories as they appear above </p>
+<!--	    <div class = "row" >  -->
+		    <div class = "well span4">
+		    <p> Please select type of exam </p>
+		    <input type="radio" ng-model="study"  value="CT">  CT <br/> 
+			<input type="radio" ng-model="study"  value="MRI">  MRI <br/> 
+		    	<br/>		
+<!--Diameter Modal -->
+        <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">Diameter</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Diameter</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    <img border="2" src = "/img/diametermeasure.png" height ="600" width="600"> 
+                    <h4> The largest dimension (outer edge to outer edge) of an observation. <br/> Comments: </h4>
+                    <li ng-repeat = "diam in diameteritems">{{diam}} </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	    </div>
+<!-- Modal for Diameter --> 			   
+			   
+			<input type="radio" ng-model="filter.diameter"  value="lessthan10">  <10 mm                      <br/> 
+			<input type="radio" ng-model="filter.diameter"  value="tentonineteen">  10-19 mm <br/> 
+			<input type="radio" ng-model="filter.diameter"  value="greaterthantwenty">  >20 mm <br/> <br/> <br/>
+
+<!-- Modal for Benign-->
+    <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">Benign</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Benign Categories</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      <h4> Definitely Benign </h4>
+                      
+                      <li ng-repeat = "def in defbenignitems">{{def}} </li>
+                      <h4> Probably Benign </h4>
+                      <li ng-repeat = "prob in probbenignitems">{{prob}}</li>
+                      <h4> Comments </h4>
+                      <li ng-repeat = "com in commentbenignitems">{{com}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+<!-- Modal for Benign -->
+			  			
+		    <input type="radio" ng-model="filter.benign.id"  value="Definitely">  Definitely <br/> 
+			<input type="radio" ng-model="filter.benign.id"  value="Probably">  Probably <br/> 
+			<input type="radio" ng-model="filter.benign.id"  value="Neither"> Neither <br/> <br/> 
+			
+			Mass Lesion? <br/>
+            <input type="radio" ng-model="filter.mass.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.mass.id"  value="false">  No <br/> <br/> 
+                
+            Non-HCC Malignancy ? <br/>
+			<input type="radio" ng-model="filter.nonhcc.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.nonhcc.id"  value="false">  No <br/> <br/>
+			<a Popover-animation="true" popover="vein thrombus info"> Tumor in Vein?  </a><br/>
+			<input type="radio" ng-model="filter.tumorinvein.id" value = "true">Yes <br/>
+			<input type="radio" ng-model="filter.tumorinvein.id" value = "false">No <br/> <br>
+			</div>	      
+            
+         <div class = "well span4 ">
+            <!-- Modal for ancillary features -->     
+            <div ng-controller="ModalDemoCtrl">
+                    <a ng-click="open()">Ancillary Features</a>
+                    <div modal="shouldBeOpen" close="close()" options="opts">
+                        <div class="modal-header">
+                            <h3>Ancillary Features</h3>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <h4> Features that favor HCC </h4>
+                                <li ng-repeat="item in hccitems">{{item}} <br/> </li>
+                                 <h4> Features that favor benignity </h4>
+                                <li  ng-repeat="items in benignitems">{{items}} <br/> </li> 
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                        </div>
+                    </div>
+					    </div>
+            
+            <br/><p> Major Features </p>
+            <p> Arterial Enhancement </p>
+            <input type="radio" ng-model="filter.arterial" value = "hypo">Hypo <br/>
+			<input type="radio" ng-model="filter.arterial" value = "hyper">Hyper<br/>
+            <input type="radio" ng-model="filter.arterial" value = "iso">Iso <br/>  <br/>
+                 
+            <a Popover-animation="true" popover="Washout info"> Washout </a><br/>
+			<input type="radio" ng-model="filter.washout.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.washout.id"  value="false">  No <br/> 
+           
+<br>    
+<!-- Modal for capsule-->              
+    <div ng-controller="ModalDemoCtrl">
+            <a ng-click="open()">Capsule</a>
+            <div modal="shouldBeOpen" close="close()" options="opts">
+                <div class="modal-header">
+                 <h3>Capsule</h3>
+                </div>
+                <div class="modal-body">
+                    <img border="2" src = "/img/capsule.png" height ="600" width="600"> 
+                    <h4>  </h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                </div>
+            </div>
+	</div>
+<!-- Modal -->            
+            <input type="radio" ng-model="filter.capsule.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.capsule.id"  value="false">  No <br/> 
+                
+            <a Popover-animation="true" popover="Diameter increase of a mass by a minimum of 5mm AND, depending on the time interval between examinations, by the following amounts - >50% diameter increase in  ≤ 6 months or >100% in > 6 months. A new ≥10mm mass, regardless of the time interval."> Growth </a> <br/>
+            <input type="radio" ng-model="filter.growth.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.growth.id"  value="false">  No <br/> 
+            
+            </div>
+        </div>
+
+				<div ng-switch on = "filter.benign.id" >		   
+<!--					       <div ng-switch-when="Definitely" > 
+					        <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert alert-success">
+                       Consider LIRADS 1
+                        </div>
+					        </div>
+					        <div ng-switch-when="Probably" > 
+					            <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert alert-success">
+                       Consider LIRADS 2
+                        </div>
+					        </div>
+-->			   
+             <div ng-switch-when="Neither">    
+                <div ng-switch on = "filter.mass.id" >
+					    <div ng-switch-when="false" > 
+					            <div class = "container"> </div>
+					    <div class = "alert alert-info">
+                       Consider LIRADS 3 if this is not a mass lesion
+                        </div>
+					    </div>
+					    <div ng-switch-when="true"> 
+					    <br/> 
+					    <div ng-switch on = "filter.nonhcc.id" >
+					    <div ng-switch-when="true"> 
+					       <div class = "container"> </div>
+					    <div class = "alert alert-error">
+                       Consider Other Malignancy
+                        </div>
+					    </div>
+					    <div ng-switch-when="false"> 
+					        <div ng-switch on = "filter.tumorinvein.id"> 
+                            <div ng-switch-when="true" > 
+                              <div class = "container span4 offset1"> </div>
+					    <div class = "span4 alert alert-error">
+                       Consider LIRADS 5V
+                        </div>
+					        </div>
+                            <div ng-switch-when="false"> 
+				            <div ng-switch on = "filter.washout.id">
+				         <!--    <div ng-switch-when = "true">
+				                <p>  WASHOUT CHECKED</p> 			                
+				             </div> -->
+				             <div ng-switch-when = "false">
+				               <!-- <p>  WASHOUT unCHECKED</p> 	-->	                
+				             </div>
+				            </div>
+				               <div ng-switch on = "filter.capsule.id">
+				             <div ng-switch-when = "true">
+				                <!-- <p> CAPSULE CHECKED</p> 	-->	                
+				             </div>
+				            </div>
+				               <div ng-switch on = "filter.growth.id">
+				                <div ng-switch-when = "true">
+				                <!-- <p> GROWTH CHECKED</p> -->		                
+				                </div>
+				                </div>
+				            </div>
+           
+               
+				    </div> 
+					
+                </div>
+                </div>                    
+		        </div>				   
+				</div>
+				</div>
+				</div>
+					

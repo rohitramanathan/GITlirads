@@ -1,0 +1,176 @@
+<div class = "row-fluid">
+	<div class = "span12" ng-controller = "ctrl">
+        Main <br/> <br/>
+	    <div class = "row-fluid" >   
+		    <div class = "well span6">
+		        <div class = "btn-group"> 
+            <pre> Please select type of exam </pre> 
+            <button type="button" class="btn btn-primary" ng-model="study" btn-radio="'CT'">  CT </button> 
+            <button type="button" class="btn btn-primary" ng-model="study" btn-radio="'MRI'">  MRI </button> <br/> <br/>
+            <pre ng-show="study"> Selected: {{study}}</pre><br/>
+		</div>			
+			    <br/>Diameter? <br/>
+			<input type="radio" ng-model="filter.diameter"  value="lessthan10">  <10 mm                      <br/> 
+			<input type="radio" ng-model="filter.diameter"  value="tentonineteen">  10-19 mm <br/> 
+			<input type="radio" ng-model="filter.diameter"  value="greaterthantwenty">  >20 mm <br/> <br/> 			
+			
+			Benign? <br/>
+		    <input type="radio" ng-model="filter.benign.id"  value="Definitely">  Definitely <br/> 
+			<input type="radio" ng-model="filter.benign.id"  value="Probably">  Probably <br/> 
+			<input type="radio" ng-model="filter.benign.id"  value="Neither"> Neither <br/> <br/> 
+			
+			Mass Lesion? <br/>
+            <input type="radio" ng-model="filter.mass.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.mass.id"  value="false">  No <br/> <br/> 
+                
+            Non-HCC Malignancy ? <br/>
+			<input type="radio" ng-model="filter.nonhcc.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.nonhcc.id"  value="false">  No <br/> <br/>
+			<a Popover-animation="true" popover="vein thrombus info"> Tumor in Vein?  </a><br/>
+			<input type="radio" ng-model="filter.tumorinvein.id" value = "true">Yes <br/>
+			<input type="radio" ng-model="filter.tumorinvein.id" value = "false">No <br/>
+				      
+            <br/><pre> Major Features </pre>
+            <p> Arterial Enhancement </p>
+            <input type="radio" ng-model="filter.arterial" value = "hypo">Hypo <br/>
+			<input type="radio" ng-model="filter.arterial" value = "hyper">Hyper<br/>
+            <input type="radio" ng-model="filter.arterial" value = "iso">Iso <br/>  <br/>
+                 
+            <a Popover-animation="true" popover="Washout info"> Washout </a><br/>
+			<input type="radio" ng-model="filter.washout.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.washout.id"  value="false">  No <br/> 
+            
+             <a Popover-animation="true" popover="Capsule info"> Capsule </a><br/>
+            <input type="radio" ng-model="filter.capsule.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.capsule.id"  value="false">  No <br/> 
+                
+            <a Popover-animation="true" popover="Diameter increase of a mass by a minimum of 5mm AND, depending on the time interval between examinations, by the following amounts - >50% diameter increase in  ≤ 6 months or >100% in > 6 months. A new ≥10mm mass, regardless of the time interval."> Growth </a> <br/>
+            <input type="radio" ng-model="filter.growth.id"  value="true">  Yes <br/> 
+            <input type="radio" ng-model="filter.growth.id"  value="false">  No <br/> 
+            
+            </div>
+               <div class= "well span4">
+	          
+	            <ol> 
+	             <li> Values </li>
+	             <li> Diameter: {{filter.diameter}}</li>
+	             <li> Benign: {{filter.benign.id}} </li>
+	             <li> Study:{{study}} </li>
+	             <li> Mass: {{filter.mass.id}} </li>	 
+	             <li> NonHCC:{{filter.nonhcc.id}} </li> 
+	             <li> Vein Thrombus: {{filter.tumorinvein.id}} </li>  
+	             <li> Arterial Enhancement: {{filter.arterial}} </li> 
+	             <li> Washout: {{filter.washout.id}} </li> 
+	             <li> Capsule: {{filter.capsule.id}} </li> 
+	             <li> Growth: {{filter.growth.id}} </li> 
+	             <li> Major: {{filter.major.id}} </li> 
+
+	        </ol>
+	            </div>
+	            <div id = "lirads layout" class="well span4" style="margin-top: 30px; width: 200px; overflow: hidden;" ng-controller = "liradscontrol">
+                <ul class="nav nav-pills nav-stacked">
+                <li ng-animate="'animate'" ng-repeat = "lirad in liradsdefs |filter: filter.diameter|filter:filter.arterial |filterall:filter"> {{lirad.code}} 
+                </li>
+                 </ul>
+	            </div>        
+<!--
+	<div class="well" style="margin-top: 30px; width: 200px; overflow: hidden;">
+    <form class="form-search"> 
+        <div class="input-append">
+          <input type="text" ng-model="search" class="search-query" style="width: 80px">
+          <button type="submit" class="btn">Search</button>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-animate="'animate'" ng-repeat="name in names | filter:search">
+            <a href="#"> {{name}} </a>
+          </li> 
+      </ul>
+    </form>
+  </div>	
+-->		
+
+		<br/>
+					<div ng-switch on = "filter.benign.id" >		   
+					       <div ng-switch-when="Definitely" > 
+					            <p> Consider LIRADS 1  </p>
+					        </div>
+					        <div ng-switch-when="Probably" > 
+					            <p>   </p>
+					           
+					            <div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Consider LIRADS 2</h2>
+		<p>Lirads 2 info here.</p>
+	</div>
+</div>
+
+
+					        </div>
+			   
+             <div ng-switch-when="Neither">    
+                <div ng-switch on = "filter.mass.id" >
+					    <div ng-switch-when="false" > 
+					            Consider LIRADS 3 if this is not a mass lesion
+					    </div>
+					    <div ng-switch-when="true"> 
+					    <br/> 
+					    <div ng-switch on = "filter.nonhcc.id" >
+					    <div ng-switch-when="true"> 
+					            <p> Consider Other Malignancy </p>
+					    </div>
+					    <div ng-switch-when="false"> 
+					        <div ng-switch on = "filter.tumorinvein.id"> 
+                            <div ng-switch-when="true" > 
+                                <p> LIRADS 5 V </p>
+					        </div>
+                            <div ng-switch-when="false"> 
+				            <div ng-switch on = "filter.washout.id">
+				             <div ng-switch-when = "true">
+				                <p>  WASHOUT CHECKED</p> 			                
+				             </div>
+				             <div ng-switch-when = "false">
+				                <p>  WASHOUT unCHECKED</p> 		                
+				             </div>
+				            </div>
+				               <div ng-switch on = "filter.capsule.id">
+				             <div ng-switch-when = "true">
+				                <p> CAPSULE CHECKED</p> 		                
+				             </div>
+				            </div>
+				               <div ng-switch on = "filter.growth.id">
+				                <div ng-switch-when = "true">
+				                <p> GROWTH CHECKED</p> 		                
+				                </div>
+				                </div>
+				            </div>
+           
+               <!-- Modal for ancillary features -->     
+                    <div ng-controller="ModalDemoCtrl">
+                    <button class="btn" ng-click="open()">Add Ancillary Features!</button>
+                    <div modal="shouldBeOpen" close="close()" options="opts">
+                        <div class="modal-header">
+                            <h3>Ancillary Features</h3>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <button class="btn" ng-repeat="item in items">{{item}} <br/> </button>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                        </div>
+                    </div>
+					    </div>
+				    </div> 
+					
+                </div>
+                </div>                    
+		        </div>				   
+				</div>
+				</div>
+				</div>
+				
+	
+	
+					

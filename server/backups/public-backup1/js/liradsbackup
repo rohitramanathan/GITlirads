@@ -1,0 +1,196 @@
+//function liradscontrol($scope){
+
+ $scope.liradsdefs = [
+
+  //"lr1": 
+      {
+          "code": "lirads1",
+          //"diameter":{{"id":"greaterthantwenty","lessthan10","tentonineteen"}},
+          "mass":{"id":"false"},
+          "nonhcc":{"id":"false"},
+          "benign":{"id":"Definitely"},
+        "diameter":{"id":["greaterthantwenty","tentonineteen","lessthan10"]},
+        "arterial":{"id":["null"]},
+        },
+    //"lr2":
+        { "code":"lirads2",
+          //  "diameter":{"id":{"greaterthantwenty","lessthan10","tentonineteen"}},
+           "mass":{"id":"false"},
+           "nonhcc":{"id":"false"},
+          "benign":{"id":"Probably"},
+        "diameter":{"id":["greaterthantwenty","tentonineteen","lessthan10"]},
+            "arterial":{"id":["null"]},
+        },
+   //"lr3":
+        {
+            "code":"lirads3",
+            //"diameter":{"id":"greaterthantwenty","lessthan10","tentonineteen"]},
+            "mass":{"id":"false"},
+            "nonhcc":{"id":"false"},
+            "benign":{"id":"Neither"},
+        "diameter":{"id":["greaterthantwenty","tentonineteen","lessthan10"]},
+            "arterial":{"id":["null"]},
+        },
+   //"lr5v":
+        {
+        "code":"lirads5v",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"true"},
+        "benign":{"id":"Neither"},
+        "diameter":{"id":["greaterthantwenty","tentonineteen","lessthan10"]},
+            "arterial":{"id":["null"]},
+        },
+     //lr3     
+          {
+        "code":"lirads3",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "diameter": {"id":["greaterthantwenty","tentonineteen","lessthan10"]},
+        "arterial":{"id":["hypo","iso","hyper"]},
+        },
+        //lr4a  - iso
+        {
+        "code":"lirads4a",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "arterial":{"id":["iso"]},
+        "major":{"id":"2"},
+        "diameter": {"id":["tentonineteen","lessthan10"]},
+        },
+          //lr4a - hypo  
+        {
+        "code":"lirads4a",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "arterial":{"id":["hypo"]},
+        "major":{"id":"2"},
+        "diameter":{"id":["tentonineteen","lessthan10"]},
+        },
+          //lr4a - hyper 
+        {
+        "code":"lirads4a",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "arterial":{"id":["hyper"]},
+        "major":{"id":"1"},
+        "diameter":{"id":["tentonineteen","lessthan10"]},
+        },
+            //lr4a - hyper, less than 10 
+        {
+        "code":"lirads4a",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "arterial":{"id":["hyper"]},
+        "major":{"id":"2"},
+        "diameter":{"id":"lessthan10"},
+        },
+                //lr4b - hyper, >20 
+        {
+        "code":"lirads4b",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "arterial":{"id":["hyper"]},
+        "major":{"id":"0"},
+        "diameter":{"id":"greaterthantwenty"},
+        },
+        //lr4b - hypo, 1MC, >20 
+        {
+        "code":"lirads4b",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "arterial":{"id":["hypo", "iso"]},
+        "major":{"id":"1"},
+        "diameter":{"id":"greaterthantwenty"},
+        },
+          //lr4b - iso, 2MC, >20 
+        {
+        "code":"lirads4b",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"false"},
+        "tumorinvein":{"id":"false"},
+        "benign":{"id":"Neither"},
+        "arterial":{"id":["hypo","iso"]},
+        "major":{"id":"2"},
+        "diameter":{"id":"greaterthantwenty"},
+        },
+    //"om":
+        {
+        "code":"othermalignancy",
+        "mass":{"id":"true"},
+        "nonhcc":{"id":"true"},
+        "tumorinvein":{"id":["null","false"]},
+        "benign":{"id":"Neither"},
+        "diameter": {"id":["greaterthantwenty","tentonineteen","lessthan10"]},
+        "arterial":{"id":["null"]},
+        }
+    
+]
+}
+// 
+//     "LIRADS 2": 
+//     {
+//       "code": "LIRADS2",
+//       "category": "Probably benign",
+//       "concept": "High probability observation is benign",
+//       "definition": " Observation with imaging features suggestive but not diagnostic of benign entity",
+//       "reporting": "May be reported at radiologist’s discretion. Exception: If reported Benign LR3, LR4, or LR5 on the prior exam, usually should be reported.",
+// 	  "management": "Continued routine surveillance usually is appropriate",
+//         
+//       "mass":"No",
+// 	  "nonhcc.id":"No",
+// 	  "benign":"Probable",
+//       
+//       },
+//     "OM":
+// 	{
+// 	"code":"OM",
+// 	"mass":"Yes",
+// 	"nonhcc.id":"Yes",
+// 	"benign":"Neither",
+// 	}
+// 
+//    "LIRADS 3": 
+//    {
+// 	 "code" : "LIRADS3",
+// 	 "category":"Intermediate probability for HCC.",
+// 	 "definition": "Observation that does not meet criteria for other LI-RADS categories.",
+// 	 "concept": "Both HCC and benign entity have moderate probability.",
+// 	 "reporting": "Should be reported if no LR4, LR5, or OM observations are present elsewhere in the liver. If LR4, LR5, or OM observations are present, may be reported at radiologist’s discretion",
+// 	 "management" : "Variable follow-up (depends on observation size, stability, and clinical considerations)",
+// 
+// 	  "mass":"No",
+// 	  "nonhcc.id":"No",
+// 	  "benign":"Definite",
+// 	
+// 	
+// 	},
+// 	
+// 	"LIRADS 4": 
+// 	{
+// 	 "code" : "LIRADS4",
+// 	 "category":"Probably HCC",
+// 	 "concept": "High probability observation is HCC but there is not 100% certainty.",
+// 	 "definition": "Observation with imaging features suggestive but not diagnostic of HCC.",
+// 	 "reporting": "Should be reported if no LR4, LR5, or OM observations are present elsewhere in the liver, If LR4, LR5, or OM observations are present, may be reported at radiologist’s discretion",
+// 	 "management" : "Variable follow-up (depends on observation size, stability, and clinical considerations)",
+// 	
+// 	  "mass":"Yes",
+// 	  "nonhcc":"No",
+// 	  "benign":"Definite",
+// 	
+// 	},

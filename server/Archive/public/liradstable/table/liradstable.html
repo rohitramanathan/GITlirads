@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="../ng-table.js"></script>
+        <link rel="stylesheet" href="../ng-table.css">
+    </head>
+<body ng-app="main">
+<h1>LIRADS Table filter</h1>
+
+<div ng-controller="DemoCtrl">
+
+    <div class="clearfix">
+    <button ng-click="tableParams.sorting = {}" class="btn btn-default pull-right">Clear sorting</button>
+    </div>
+
+    <table ng-table="tableParams" show-filter="true" class="table ng-table-responsive">
+        <tr ng-repeat="user in users" ng-class="{ 'emphasis': user.money > 500 }">
+            <td data-title="'Category'" filter="{ 'category': 'select' }" filter-data="names($column)">
+                {{user.category}}
+            </td>
+			<td data-title="'Diameter'" filter="{ 'diameter': 'select' }" filter-data="diams($column)">
+                {{user.diameter}}
+            </td>
+			<td data-title="'Benign'" filter="{ 'benign': 'select' }" filter-data="bens($column)">
+                {{user.benign}}
+            </td>
+		
+<!-- 			<td data-title="'Diameter'" sortable="money">
+                {{user.diameter}}
+            </td> -->
+<!--             <td data-title="'Benign'" filter="{ 'age': 'age' }">
+                {{user.benign}}
+            </td> -->
+            <td data-title="'Mass'" filter="{'mass': 'select' }" filter-data="masses($column)">
+                {{user.mass}}
+            </td>
+			<td data-title="'Non-HCC'" filter="{'nonhcc': 'select' }" filter-data="nonh($column)">
+                {{user.nonhcc}}
+            </td>
+			<td data-title="'Tumor in Vein'" filter="{'tumorinvein': 'select' }" filter-data="tiv($column)">
+                {{user.tumorinvein}}
+            </td>
+			<td data-title="'Arterial - ISO'" filter="{'iso': 'select' }" filter-data="artiso($column)">
+                {{user.iso}}
+            </td>
+			<td data-title="'Arterial - HYPO'" filter="{'hypo': 'select' }" filter-data="arthypo($column)">
+                {{user.hypo}}
+            </td>
+			<td data-title="'Arterial - HYPER'" filter="{'hyper': 'select' }" filter-data="arthyper($column)">
+                {{user.hyper}}
+            </td>
+			<td data-title="'Washout/Capsule/Growth'" filter="{'majorcat': 'select' }" filter-data="majors($column)">
+                {{user.majorcat}}
+            </td>
+        </tr>
+    </table>    
+<!--     <script type="text/ng-template" id="ng-table/filters/age.html">
+        <input type="radio" ng-model="params.filter[category]" name="filter-age" value="" /> None
+        <br />
+        <input type="radio" ng-model="params.filter[category]" name="filter-age" value="50" /> 50 years
+    </script> -->
+
+    <script>
+        var app = angular.module('main', ['ngTable']).
+    controller('DemoCtrl', function($scope, $filter, $q, ngTableParams) {
+        var data = [
+  {
+    "category":"1",
+    "benign":"definitely",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"any",
+    "iso":"null",
+    "hypo":"null",
+    "hyper":"null",
+    "majorcat":"null"
+  },
+  {
+    "category":"2",
+    "benign":"probably",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"any",
+    "iso":"null",
+    "hypo":"null",
+    "hyper":"null",
+    "majorcat":"null"
+  },
+  {
+    "category":"3",
+    "benign":"neither",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"No",
+    "majorcat":"0"
+  },
+  {
+    "category":"3",
+    "benign":"neither",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"Yes",
+    "hypo":"No",
+    "hyper":"No",
+    "majorcat":"0"
+  },
+  {
+    "category":"3",
+    "benign":"neither",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"No",
+    "hypo":"Yes",
+    "hyper":"No",
+    "majorcat":"0"
+  },
+  {
+    "category":"3",
+    "benign":"neither",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"Yes",
+    "hypo":"Yes",
+    "hyper":"Yes",
+    "majorcat":"0"
+  },
+  {
+    "category":"3",
+    "benign":"neither",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"Yes",
+    "hypo":"No",
+    "hyper":"No",
+    "majorcat":"0"
+  },
+  {
+    "category":"3",
+    "benign":"neither",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"No",
+    "hypo":"Yes",
+    "hyper":"No",
+    "majorcat":"0"
+  },
+  {
+    "category":"3",
+    "benign":"neither",
+    "mass":"no",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"Yes",
+    "hypo":"Yes",
+    "hyper":"No",
+    "majorcat":"1"
+  },
+  {
+    "category":"4a",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"Yes",
+    "hypo":"No",
+    "hyper":"No",
+    "majorcat":">=2"
+  },
+  {
+    "category":"4a",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"No",
+    "hypo":"Yes",
+    "hyper":"No",
+    "majorcat":">=2"
+  },
+  {
+    "category":"4a",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<20",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":"1"
+  },
+  {
+    "category":"4a",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"<10",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":">=2"
+  },
+  {
+    "category":"4b",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"Yes",
+    "hypo":"No",
+    "hyper":"No",
+    "majorcat":"1"
+  },
+  {
+    "category":"4b",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"No",
+    "hypo":"Yes",
+    "hyper":"No",
+    "majorcat":"1"
+  },
+  {
+    "category":"4b",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"Yes",
+    "hypo":"No",
+    "hyper":"No",
+    "majorcat":">=2"
+  },
+  {
+    "category":"4b",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"No",
+    "hypo":"Yes",
+    "hyper":"No",
+    "majorcat":">=2"
+  },
+  {
+    "category":"4b",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":"0"
+  },
+  {
+    "category":"5a",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"10 to 19",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":">=2"
+  },
+  {
+    "category":"5b",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":"1"
+  },
+  {
+    "category":"5b",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":">=2"
+  },
+  {
+    "category":"5treated",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":"10 to 19",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":">=2"
+  },
+  {
+    "category":"5treated",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"no",
+    "diameter":">=20",
+    "iso":"No",
+    "hypo":"No",
+    "hyper":"Yes",
+    "majorcat":">=2"
+  },
+  {
+    "category":"5v",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"no",
+    "tumorinvein":"yes",
+    "diameter":"any",
+    "iso":"null",
+    "hypo":"null",
+    "hyper":"null",
+    "majorcat":"null"
+  },
+  {
+    "category":"om",
+    "benign":"neither",
+    "mass":"yes",
+    "nonhcc":"yes",
+    "tumorinvein":"no",
+    "diameter":"any",
+    "iso":"null",
+    "hypo":"null",
+    "hyper":"null",
+    "majorcat":"null"
+  }
+];
+
+        $scope.tableParams = new ngTableParams({
+            $liveFiltering: true,
+            page: 1,            // show first page
+            total: data.length, // length of data
+            count: 10           // count per page
+        });
+
+        $scope.names = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                names = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.category, arr) === -1) {
+                    arr.push(item.category);
+                    names.push({
+                        'id': item.category,
+                        'title': item.category
+                    });
+                }
+            });
+            def.resolve(names);
+            return def.promise;
+        };
+		$scope.diams = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                diams = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.diameter, arr) === -1) {
+                    arr.push(item.diameter);
+                    diams.push({
+                        'id': item.diameter,
+                        'title': item.diameter
+                    });
+                }
+            });
+            def.resolve(diams);
+            return def.promise;
+        };
+			$scope.bens = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                bens = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.benign, arr) === -1) {
+                    arr.push(item.benign);
+                    bens.push({
+                        'id': item.benign,
+                        'title': item.benign
+                    });
+                }
+            });
+            def.resolve(bens);
+            return def.promise;
+        };
+			$scope.masses = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                masses = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.mass, arr) === -1) {
+                    arr.push(item.mass);
+                    masses.push({
+                        'id': item.mass,
+                        'title': item.mass
+                    });
+                }
+            });
+            def.resolve(masses);
+            return def.promise;
+        };
+		$scope.nonh = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                nonh = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.nonhcc, arr) === -1) {
+                    arr.push(item.nonhcc);
+                    nonh.push({
+                        'id': item.nonhcc,
+                        'title': item.nonhcc
+                    });
+                }
+            });
+            def.resolve(nonh);
+            return def.promise;
+        };
+			$scope.tiv = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                tiv = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.tumorinvein, arr) === -1) {
+                    arr.push(item.tumorinvein);
+                    tiv.push({
+                        'id': item.tumorinvein,
+                        'title': item.tumorinvein
+                    });
+                }
+            });
+            def.resolve(tiv);
+            return def.promise;
+        };
+			$scope.artiso = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                artiso = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.iso, arr) === -1) {
+                    arr.push(item.iso);
+                    artiso.push({
+                        'id': item.iso,
+                        'title': item.iso
+                    });
+                }
+            });
+            def.resolve(artiso);
+            return def.promise;
+        };
+			$scope.arthypo = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                arthypo = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.hypo, arr) === -1) {
+                    arr.push(item.hypo);
+                    arthypo.push({
+                        'id': item.hypo,
+                        'title': item.hypo
+                    });
+                }
+            });
+            def.resolve(arthypo);
+            return def.promise;
+        };
+			$scope.arthyper = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                arthyper = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.hyper, arr) === -1) {
+                    arr.push(item.hyper);
+                    arthyper.push({
+                        'id': item.hyper,
+                        'title': item.hyper
+                    });
+                }
+            });
+            def.resolve(arthyper);
+            return def.promise;
+        };		
+			$scope.majors = function(column) {
+            var def = $q.defer(),
+                arr = [],
+                majors = [];
+            angular.forEach(data, function(item){
+                if ($.inArray(item.majorcat, arr) === -1) {
+                    arr.push(item.majorcat);
+                    majors.push({
+                        'id': item.majorcat,
+                        'title': item.majorcat
+                    });
+                }
+            });
+            def.resolve(majors);
+            return def.promise;
+        };		
+		
+		
+        $scope.$watch('tableParams', function(params) {
+            // use build-in angular filter
+            var orderedData = params.sorting ? 
+                                $filter('orderBy')(data, params.orderBy()) :
+                                data;
+            orderedData = params.filter ? 
+                                $filter('filter')(orderedData, params.filter) :
+                                orderedData;
+
+            params.total = orderedData.length; // set total for recalc pagination
+            $scope.users = orderedData.slice((params.page - 1) * params.count, params.page * params.count);
+        }, true);
+    })
+    </script>
+    <style>
+    .ng-table tr.emphasis td {
+        background-color: #7FF;
+        font-weight: bold;
+    }
+    </style>
+</div>
+
+
+    </body>
+</html>

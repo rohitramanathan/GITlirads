@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app = "lirad">
+<head>
+    <title> LIRADS</title>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+ 	<script src="js/bootstrap.min.js"></script>
+    <script src = "js/script.js"> </script>
+    <script src= "app.js"></script>
+    <script src = "js/liradsdefs.js"></script>
+ 	<script src="js/ui-bootstrap-tpls-0.5.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.5.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  
+</head>
+
+<body>
+		 <div ng-init="friends = [
+		                    {name:'John', phone:'555-1276'},
+                             {name:'Mary', phone:'800-BIG-MARY'},
+                             {name:'Mike', phone:'555-4321'},
+                             {name:'Adam', phone:'555-5678'},
+                             {name:'Julie', phone:'555-8765'}]">
+        </div>
+		<div style="float:right" >
+	        <input ng-model = "searchText"> <br/>
+            <li ng-repeat = "friend in friends | filter:searchText"> {{friend.name}} {{lirad.phone}} </li>
+	    </div>	
+</body>
+</html>
+
+
+
+
